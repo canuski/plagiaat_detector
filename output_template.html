@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plagiaatdetectierapport</title>
+  </head>
+  <body>
+    <h1>Plagiaatdetectierapport</h1>
+    <table border="1">
+      <tr>
+        <th>Combinaties</th>
+        {% for author in matrix.keys() %}
+        <th>{{ author_aliases[author] }}</th>
+        {% endfor %}
+      </tr>
+      {% for author1, data in matrix.items() %}
+      <tr>
+        <td>{{ author_aliases[author1] }}</td>
+        {% for author2, comments in data.items() %}
+        <td>
+          {% if comments %} {% for comment in comments %} {{ comment }}<br />
+          {% endfor %} {% else %} No comments {% endif %}
+        </td>
+        {% endfor %}
+      </tr>
+
+      {% endfor %}
+    </table>
+  </body>
+</html>
